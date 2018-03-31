@@ -61,12 +61,8 @@ Barba.Pjax.getTransition = function() {
    */
 
   return FadeTransition;
-};	
-	$(function () {
-	    $('[data-toggle="tooltip"]').tooltip()
-	  })
-
-
+};
+Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
 	$(function() {
 	  var formAnimatedInput = $('.form-animate-fields .form-input');
 	  
@@ -84,5 +80,12 @@ Barba.Pjax.getTransition = function() {
 	    });
 	  });
 	});
+});	
+	$(function () {
+	    $('[data-toggle="tooltip"]').tooltip()
+	  })
+
+
+
 
 })
