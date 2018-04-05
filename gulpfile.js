@@ -29,8 +29,10 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/bootstrap-grid/bootstrap.min.js',    
 		'app/libs/barba/barba.min.js',    
+		'app/libs/input-mask/jquery.maskedinput.min.js',
 		'app/libs/perfect-scrollbar/perfect-scrollbar.js',    
-		'app/libs/jquery-validate/jquery-validate.min.js',    
+		'app/libs/jquery-validate/jquery.validate.min.js',
+		'app/libs/bootstrap-select/bootstrap-select.min.js',    
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))

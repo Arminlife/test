@@ -1,5 +1,6 @@
 @import url(../libs/bootstrap-grid/bootstrap-grid.css);
 @import url(../libs/bootstrap-grid/bootstrap.min.css);
+@import url(../libs/bootstrap-select/bootstrap-select.min.css);
 
 @font-face {
     font-family: 'Yeseva One';
@@ -205,6 +206,14 @@ i.btn{
 	width: 430px;
 	height: 80vh;
 	position: relative;
+	&.opened-widget{
+		.tags-widget{
+			display: none;
+			&.opened{
+				display: block;
+			}
+		}
+	}
 }
 .scroll-wrapper{
 	height: 50vh;
@@ -368,6 +377,7 @@ i.btn{
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea2363', endColorstr='#ff8a65',GradientType=1 );
 			}
 			&.more{
+				display: inline-block !important;
 				background: none !important;
 				padding: 0;
 				opacity: 0.25;
@@ -377,6 +387,9 @@ i.btn{
 				&:hover{
 					opacity: 1;
 				}
+			}
+			&:nth-of-type(n+11){
+				display: none;
 			}
 		}
 	}
@@ -389,6 +402,13 @@ i.btn{
 			color:#000;
 			font-size: 13px;
 			padding: 5px 10px;
+		}
+	}
+	&.opened{
+		ul{
+			li{
+				display: inline-block !important;
+			}
 		}
 	}	
 }
@@ -404,7 +424,6 @@ i.btn{
 }
 
 $form-field-padding-top: 24px;
-$form-field-margin-bottom: 24px;
 
 $form-input-width: 100%;
 $form-input-height: 34px;
@@ -426,15 +445,46 @@ $form-label-content-focus-color: #808080;
     position: relative;
     overflow: hidden;
     padding-top: $form-field-padding-top;
-    margin-bottom: $form-field-margin-bottom;
+    padding-bottom: 24px;
+    &.with-select{
+    	overflow: visible;
+    }
+  }
+  label.error{
+  	position: absolute;
+  	right: 25px;
+  	top:15px;
+  	background-color: #fff;
+  	border:1px solid #eeeeee;
+  	color: #ff0000;
+  	font-weight: 400;
+  	font-size: 13px;
+  	line-height: 18px;
+  	padding: 20px;
+  	display: inline-block;
+  	box-shadow: 0 0 24px rgba(0,0,0,0.14);
+  	&:before{
+  		content:"";
+  		position: absolute;
+  		left: -10px;
+  		top: 14px;
+  		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 10px 10px 10px 0;
+		border-color: transparent #ffffff transparent transparent;
+  	}
+  	+ label:before{
+  		background-color: #ff0000;
+  	}
   }
   
   .form-input {
+  	width: 300px;
     position: relative;
     z-index: $form-input-z-index;
     display: block;
     background-color: transparent;
-    width: $form-input-width;
     height: $form-input-height;
     padding: $form-input-padding;
     border: 0;
@@ -442,7 +492,12 @@ $form-label-content-focus-color: #808080;
     appearance: none;
     color: $form-input-text-color;
     transition: border-bottom 0.35s cubic-bezier(0.7, 0, 0.3, 1);
-    border-bottom: 1px solid $form-label-after-background-color
+    border-bottom: 1px solid #e2e2e2;
+    &.valid{
+    	~ label:before{
+    		background-color: $form-label-before-background-color;
+    	}
+    }
   }
 
   .form-input:focus {
@@ -451,7 +506,7 @@ $form-label-content-focus-color: #808080;
   }
 
   .form-label {
-    width: $form-label-width;
+    width: 300px;
     position: absolute;
     font-size: 17px;
     font-weight: 300;
@@ -477,7 +532,7 @@ $form-label-content-focus-color: #808080;
     transition: transform 0.35s cubic-bezier(0.7, 0, 0.3, 1);
   }
 
-  .form-input.is-filled + .form-label:before {
+  .form-input.is-filled ~ .form-label:before {
     transform: translate3d(0, 0, 0);
   }
 
@@ -491,7 +546,7 @@ $form-label-content-focus-color: #808080;
     transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1)
   }
 
-  .form-input.is-filled + .form-label:after {
+  .form-input.is-filled ~ .form-label:after {
   	opacity: 0;
   }
 
@@ -503,9 +558,127 @@ $form-label-content-focus-color: #808080;
     transition: transform 0.25s 0.05s cubic-bezier(0.7, 0, 0.3, 1), font-size 0.25s 0s cubic-bezier(0.7, 0, 0.3, 1);
   }
 
-  .form-input.is-filled + .form-label .form-label-content {
+  .form-input.is-filled ~ .form-label .form-label-content {
     color: $form-label-content-focus-color;
     font-size: 13px;
     transform: translate3d(-($form-input-padding), -20px, 0);
   }
+}
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+	width: 300px;
+}
+.bootstrap-select>.dropdown-toggle{
+	background-color: transparent !important;
+	border:none;
+	border-radius: 0;
+	box-shadow: none !important;
+	border-bottom: 1px solid #e2e2e2;
+	font-size: 17px;
+	color: #808080;
+	padding-left: 0;
+}
+.bootstrap-select .dropdown-toggle:focus{
+	outline: none !important;
+}
+
+@media only screen and (max-width: 992px){
+	body{
+		overflow: visible;
+	}
+	.main-wrapper{
+		display: block;
+		height: auto;
+		width: 100%;
+	}
+	.first-column{
+		width: 100%;
+	}
+	.second-column{
+		width: 100%;
+	}
+	.scroll-wrapper{
+		height: auto;
+	}
+	.copyright{
+		bottom:30px;
+	}
+	.form-animate-fields .form-field{
+		max-width: 500px;
+	}
+
+}
+
+@media only screen and (max-width: 767px){
+	.first-column{
+		padding: 20px 30px;
+		padding-bottom: 80px;
+	}
+	.h2{
+		margin-top: 30px;
+		font-size: 30px;
+		line-height: 36px;
+		margin-bottom: 30px;
+	}
+	p{
+		font-size: 16px;
+		line-height: 25px;
+		a{
+			display: block;
+		}
+	}
+	p.bg{
+		margin-bottom: 30px;
+	}
+	p.bg span{
+		font-size: 16px;
+	}
+	.btn-gradient{
+		font-size: 18px;
+	}
+	.copyright{
+		bottom: 20px;
+		left: 30px;
+	}
+	.second-column{
+		padding: 20px 30px;
+		padding-bottom: 100px;
+	}
+	.tags-widget{
+		width: 100%;
+		.h4{
+			font-size: 18px;
+		}
+		.tooltip{
+			display: none !important;
+		}
+		ul{
+			li{
+				font-size: 16px;
+			}
+		}
+	}
+	.second-column .header li{
+		font-size: 18px;
+	}
+	#tags-wrapper{
+		width: 100%;
+		overflow: visible;
+		height: auto;
+	}
+	.form-animate-fields label.error{
+		background-color: transparent;
+		box-shadow: none;
+		right: auto;
+		left: 0;
+		padding: 0;
+		border:none;
+		top:auto;
+		bottom:-5px;
+		&:before{
+			display: none;
+		}
+	}
+	.form-animate-fields .form-input{
+		border-radius: 0 !important;
+	}
 }
