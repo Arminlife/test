@@ -452,7 +452,7 @@ $form-label-content-focus-color: #808080;
   }
   label.error{
   	position: absolute;
-  	right: 25px;
+  	left: 320px;
   	top:15px;
   	background-color: #fff;
   	border:1px solid #eeeeee;
@@ -607,7 +607,21 @@ $form-label-content-focus-color: #808080;
 	}
 
 }
-
+@media only screen and (min-width: 992px) and (max-width: 1400px){
+	.form-animate-fields label.error{
+		background-color: transparent;
+		box-shadow: none;
+		right: auto;
+		left: 0;
+		padding: 0;
+		border:none;
+		top:auto;
+		bottom:-5px;
+		&:before{
+			display: none;
+		}
+	}
+}
 @media only screen and (max-width: 767px){
 	.first-column{
 		padding: 20px 30px;
