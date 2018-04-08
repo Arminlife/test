@@ -36,14 +36,14 @@
     <div class="first-column">
         <div class="header">
             <ul class="icons">
-                <li><a href="#"><img src="img/telegram.png" alt=""></a></li>
-                <li><a href="#"><img src="img/mail.png" alt=""></a></li>
+                <li><a href="tg://resolve?domain=mamontosik"><img src="img/telegram.png" alt=""></a></li>
+                <li><a href="mailto:mamontosik@gmail.com"><img src="img/mail.png" alt=""></a></li>
             </ul>
         </div>
         <div id="barba-wrapper">
             <div class="barba-container">
                 <a href="index.html" class="back-to">← Назад на главную</a>
-                <div class="h2">Статья</div>
+                <div class="h2">О нас</div>
                 <p class="scroll-wrapper">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>
@@ -59,7 +59,7 @@
     <div class="second-column">
         <div class="header">
             <ul class="icons">
-                <li><img src="img/phone.png" alt=""><span>8 916 825 24 69</span></li>
+                <li><a href="tel:89168252469"><img src="img/phone.png" alt="">8 916 825 24 69</a></li>
             </ul>
         </div>
         <div id="tags-wrapper">
@@ -188,9 +188,20 @@
     <script src="js/scripts.min.js"></script>
     <script>
         const container = document.querySelector('#tags-wrapper');
-        const ps = new PerfectScrollbar(container);
-        const containerTwo = document.querySelector('.scroll-wrapper');
-        const psTwo = new PerfectScrollbar(containerTwo);   
+        if ($(window).width() > 992) {
+            
+            const ps = new PerfectScrollbar(container);
+            const containerTwo = document.querySelector('.scroll-wrapper');
+            const psTwo = new PerfectScrollbar(containerTwo);  
+        }
+         $(document).on('click', '.tags-widget ul li.more', function () {
+          var text = $(this).text();
+            $(this).text(
+                text == "Что ещё мы можем" ? "ещё" : "Что ещё мы можем");
+          $(this).parent().parent().toggleClass('opened');
+          $('#tags-wrapper').toggleClass('opened-widget');
+          container.scrollTop = 0;
+        })        
     </script>
 </body>
 

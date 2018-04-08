@@ -131,10 +131,39 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 
 })
 
-$(document).on('click', '.tags-widget ul li.more', function () {
-  var text = $(this).text();
-    $(this).text(
-        text == "Что ещё мы можем" ? "ещё" : "Что ещё мы можем");
-  $(this).parent().parent().toggleClass('opened');
-  $('#tags-wrapper').toggleClass('opened-widget');
-})
+
+  $(function() {
+    var formAnimatedInput = $('.form-animate-fields .form-input');
+    
+    formAnimatedInput.each(function() {
+      var $this = $(this);
+
+      $this.on('focus', function() {
+        $this.addClass('is-filled');
+      });
+      
+      $this.on('blur', function() {
+        if($this.val().length == 0) {
+          $this.removeClass('is-filled');
+        }
+      });
+    });
+    $('#contactForm').validate();
+    $('.selectpicker').selectpicker();
+    
+    // Phone Input
+    jQuery(function($){
+     $(".phone-number").mask("ps (000) 000-00-00", {
+       translation: {
+          'p': {
+            pattern: /[+]/,
+            fallback: '+'
+          },
+          's': {
+            pattern: /[7]/,
+            fallback: '7'
+          }    
+        }
+     });
+    });    
+  });
