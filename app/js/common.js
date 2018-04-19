@@ -199,7 +199,7 @@ $(document).ready(function () {
                      $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p>")
                          .hide()
                          .fadeIn(1500, function () {
-                         $('#message').append("<a href='/index.html' class='btn btn-gradient'>На главную</a>");
+                         $('#message').append("<a href='index.html' class='btn btn-gradient'>На главную</a>");
                      });
                  }
              });
