@@ -80,8 +80,26 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
 	    });
 	  });
 	});
-  $('#contactForm').validate();
+
   $('.selectpicker').selectpicker();
+
+       $("#contactForm").validate({
+         submitHandler: function (form) {
+             $.ajax({
+                 //type: "POST",
+                 //url: "formfiles/submit.php",
+                 data: $(form).serialize(),
+                 success: function () {
+                    $('.js-change-on-submit').html('Спасибо!');
+                     $(form).html("<div id='message'></div>");
+                     $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p><a href='/index.html' class='btn btn-gradient' style='margin-top:20px;'>На главную</a>")
+                         .hide()
+                         .fadeIn(1000);
+                 }
+             });
+             return false; // required to block normal submit since you used ajax
+         }
+     });
   
   // Phone Input
   jQuery(function($){
@@ -126,7 +144,6 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
               max: jQuery.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),
               min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}.")
       });
-      $('#contactForm').validate()
 
 
 })
@@ -148,8 +165,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
         }
       });
     });
-    $('#contactForm').validate();
-    $('.selectpicker').selectpicker();
+
     
     // Phone Input
     jQuery(function($){
@@ -167,3 +183,39 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
      });
     });    
   });
+
+
+$(document).ready(function () {
+
+     $("#contactForm").validate({
+         submitHandler: function (form) {
+             $.ajax({
+                 //type: "POST",
+                 //url: "formfiles/submit.php",
+                 data: $(form).serialize(),
+                 success: function () {
+                    $('.js-change-on-submit').html('Спасибо!');
+                     $(form).html("<div id='message'></div>");
+                     $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p>")
+                         .hide()
+                         .fadeIn(1500, function () {
+                         $('#message').append("<a href='/index.html' class='btn btn-gradient'>На главную</a>");
+                     });
+                 }
+             });
+             return false; // required to block normal submit since you used ajax
+         }
+     });
+
+ });
+
+    $('.tags-widget li').each(function() {
+      var $this = $(this);
+      var text = $(this).text();
+      $this.on('click', function() {
+        $("#category").val(text);
+        $("#category").selectpicker("refresh");
+        $("#category").focus();
+      });
+      
+    });
