@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	Barba.Pjax.start();
+  Barba.Pjax.start();
 var FadeTransition = Barba.BaseTransition.extend({
   start: function() {
     /**
@@ -63,23 +63,23 @@ Barba.Pjax.getTransition = function() {
   return FadeTransition;
 };
 Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-	$(function() {
-	  var formAnimatedInput = $('.form-animate-fields .form-input');
-	  
-	  formAnimatedInput.each(function() {
-	    var $this = $(this);
+  $(function() {
+    var formAnimatedInput = $('.form-animate-fields .form-input');
+    
+    formAnimatedInput.each(function() {
+      var $this = $(this);
 
-	    $this.on('focus', function() {
-	      $this.addClass('is-filled');
-	    });
-	    
-	    $this.on('blur', function() {
-	      if($this.val().length == 0) {
-	        $this.removeClass('is-filled');
-	      }
-	    });
-	  });
-	});
+      $this.on('focus', function() {
+        $this.addClass('is-filled');
+      });
+      
+      $this.on('blur', function() {
+        if($this.val().length == 0) {
+          $this.removeClass('is-filled');
+        }
+      });
+    });
+  });
 
   $('.selectpicker').selectpicker();
 
@@ -95,6 +95,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
                      $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p><a href='/index.html' class='btn btn-gradient' style='margin-top:20px;'>На главную</a>")
                          .hide()
                          .fadeIn(1000);
+                         $('#message').append("<a href='index.html' class='btn btn-gradient'>На главную</a>");
                  }
              });
              return false; // required to block normal submit since you used ajax
@@ -117,10 +118,10 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
    });
   });
 
-});	
-	$(function () {
-	    $('[data-toggle="tooltip"]').tooltip()
-	  })
+}); 
+  $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
 
 
       jQuery.extend(jQuery.validator.messages, {
@@ -204,6 +205,7 @@ $(document).ready(function () {
                  }
              });
              return false; // required to block normal submit since you used ajax
+             
          }
      });
 
