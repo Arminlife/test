@@ -95,7 +95,6 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
                      $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p><a href='/index.html' class='btn btn-gradient' style='margin-top:20px;'>На главную</a>")
                          .hide()
                          .fadeIn(1000);
-                         $('#message').append("<a href='index.html' class='btn btn-gradient'>На главную</a>");
                  }
              });
              return false; // required to block normal submit since you used ajax
@@ -205,7 +204,6 @@ $(document).ready(function () {
                  }
              });
              return false; // required to block normal submit since you used ajax
-             
          }
      });
 
