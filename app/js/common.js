@@ -217,5 +217,6 @@ $(document).ready(function () {
         $("#category").selectpicker("refresh");
         $("#category").focus();
       });
-      
     });
+
+

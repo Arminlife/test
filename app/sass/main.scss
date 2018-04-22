@@ -92,6 +92,9 @@ p{
 	background-image: url(../img/white-bg.png);
 	background-position: 0 0;
 	background-repeat: no-repeat;
+	.mobile-phone{
+		display: none;
+	}
 }
 .second-column{
 	float: left;
@@ -369,6 +372,9 @@ i.btn{
 			margin-right: 1px;
 			margin-left: 1px;
 			cursor: pointer;
+			a{
+				color:#fff;
+			}
 			&:hover{
 				background: #ea2363;
 				background: -moz-linear-gradient(left, #ea2363 0%, #ff8a65 100%);
@@ -640,6 +646,19 @@ $form-label-content-focus-color: #808080;
 	.first-column{
 		padding: 20px 30px;
 		padding-bottom: 80px;
+		.mobile-phone{
+			display: inline-block;
+			float: left;
+			color:#fff;
+			img{
+				margin-right: 10px;
+				position: relative;
+				top:-2px;
+			}
+		}
+		.header{
+			margin-bottom: 40px;
+		}
 	}
 	.h2{
 		margin-top: 0;
