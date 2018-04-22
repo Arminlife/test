@@ -92,7 +92,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container
                  success: function () {
                     $('.js-change-on-submit').html('Спасибо!');
                      $(form).html("<div id='message'></div>");
-                     $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p><a href='/index.html' class='btn btn-gradient' style='margin-top:20px;'>На главную</a>")
+                     $('#message').append("<p>Мы свяжемся с вами в ближайшее время и зададим несколько уточняющих вопросов</p><a href='index.html' class='btn btn-gradient' style='margin-top:20px;'>На главную</a>")
                          .hide()
                          .fadeIn(1000);
                  }
